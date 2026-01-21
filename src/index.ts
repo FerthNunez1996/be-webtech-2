@@ -1,9 +1,10 @@
-import { Hono } from 'hono'
+import { testConnection } from './config/database';
+import { getAllStudents } from './data/student.data';
 
-const app = new Hono()
+async function main() {
+  await testConnection();
+  const students = await getAllStudents();
+  console.log(students);
+}
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
-
-export default app
+main();
